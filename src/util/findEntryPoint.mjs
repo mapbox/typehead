@@ -19,7 +19,7 @@ export async function findEntryPoint(
 
   console.error(
     chalk.red(
-      `Couldn't find ${filename}! Alternatively, specify 'entryPoints' in typehead.config.mjs.\n\nReference: https://esbuild.github.io/api/#entry-points`
+      `Couldn't find ${filename}! Alternatively, specify 'entryPoints' in typehead.config.js / your Typehead configuration.\n\nReference: https://github.com/mapbox/typehead#customization\nESBuild Reference: https://esbuild.github.io/api/#entry-points`
     )
   );
   process.exit(1);
