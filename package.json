@@ -1,0 +1,61 @@
+{
+  "name": "@mapbox/typehead",
+  "version": "1.0.3",
+  "description": "Refreshingly simple CLI for TypeScript packages.",
+  "main": "index.mjs",
+  "type": "module",
+  "bin": {
+    "typehead": "index.mjs",
+    "typehead-build": "src/build.mjs",
+    "typehead-serve": "src/serve.mjs"
+  },
+  "scripts": {
+    "lint": "eslint src/**/*",
+    "format": "prettier src/**/*",
+    "git-pre-commit": "lint-staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mapbox/typehead.git"
+  },
+  "author": "Michael Bullington <michael.bullington@mapbox.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mapbox/typehead/issues"
+  },
+  "homepage": "https://github.com/mapbox/typehead#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^8.1.0",
+    "cosmiconfig": "^7.0.1",
+    "deepmerge": "^4.2.2",
+    "esbuild": "^0.12.22",
+    "esbuild-plugin-lodash": "^1.1.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --fix",
+    "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
+  },
+  "peerDependencies": {
+    "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/eslint-parser": "^7.15.4",
+    "@mapbox/eslint-config-mapbox": "^3.0.0",
+    "@vercel/git-hooks": "^1.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.3.2"
+  },
+  "engines": {
+    "node": ">=14.17.6"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  }
+}

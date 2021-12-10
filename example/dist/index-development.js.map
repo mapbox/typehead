@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/index.ts"],
+  "sourcesContent": ["export function hello() {\n  return 'Hello world!';\n}\n"],
+  "mappings": ";;;;;;;;;AAAA;AAAA;AAAA;AAAO,iBAAiB;AACtB,SAAO;AAAA;",
+  "names": []
+}

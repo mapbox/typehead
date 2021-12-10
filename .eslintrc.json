@@ -1,0 +1,7 @@
+{
+  "extends": ["@mapbox/eslint-config-mapbox/base", "prettier"],
+  "parser": "@babel/eslint-parser",
+  "env": {
+    "node": true
+  }
+}
