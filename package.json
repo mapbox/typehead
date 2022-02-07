@@ -1,6 +1,6 @@
 {
   "name": "@mapbox/typehead",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Refreshingly simple CLI for TypeScript packages.",
   "main": "index.mjs",
   "type": "module",
@@ -29,7 +29,7 @@
     "commander": "^8.1.0",
     "cosmiconfig": "^7.0.1",
     "deepmerge": "^4.2.2",
-    "esbuild": "^0.12.22",
+    "esbuild": "^0.14.19",
     "esbuild-plugin-lodash": "^1.1.0"
   },
   "lint-staged": {
