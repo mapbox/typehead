@@ -1,6 +1,6 @@
 ![logo](./assets/logo.png)
 
-Typehead is a thin wrapper around [ESBuild](https://esbuild.github.io/) that makes it painfully simple to develop NPM packages using TypeScript.
+Typehead is a thin wrapper around [ESBuild](https://esbuild.github.io/) that makes it refreshingly simple to develop NPM packages using TypeScript.
 
 📦 `npm install --save-dev @mapbox/typehead typescript`
 
