@@ -1,6 +1,6 @@
 {
   "name": "@mapbox/typehead",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Refreshingly simple CLI for TypeScript packages.",
   "main": "index.mjs",
   "type": "module",

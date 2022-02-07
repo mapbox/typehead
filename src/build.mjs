@@ -16,6 +16,7 @@ import { IS_EXTERNAL } from './util/regex.mjs';
 const program = new Command()
   .name('typehead-build')
   .option('-w --watch', 'Watch source files for changes.')
+  .option('--print-esbuild-config', 'Prints the ESBuild config.')
   .parse(process.argv);
 const argv = program.opts();
 
@@ -45,6 +46,11 @@ if (!config.entryPoints) {
 }
 if (!config.outdir) {
   config.outdir = 'dist';
+}
+
+if (argv.printEsbuildConfig) {
+  console.log(chalk.blue('ESBuild config:'));
+  console.log(JSON.stringify(config, null, 2));
 }
 
 // Configure watch.

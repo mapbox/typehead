@@ -16,6 +16,7 @@ const program = new Command()
   .name('typehead-serve')
   .option('-h --host <host>', 'Host for server (localhost by default).')
   .option('-p --port <port>', 'Port for server (20009 by default).')
+  .option('--print-esbuild-config', 'Prints the ESBuild config.')
   .parse(process.argv);
 const argv = program.opts();
 
@@ -32,6 +33,11 @@ config.entryPoints = config.webEntryPoints || [
   await findEntryPoint(resolve(cwd, 'web', 'index')),
 ];
 config.outdir = config.webOutdir || 'web';
+
+if (argv.printEsbuildConfig) {
+  console.log(chalk.blue('ESBuild config:'));
+  console.log(JSON.stringify(config, null, 2));
+}
 
 console.log(chalk.blue('Open your browser to build the file! 🏗️'));
 

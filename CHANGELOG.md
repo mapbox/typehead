@@ -1,3 +1,8 @@
+# v1.0.4
+
+- Add `--print-esbuild-config` flag for debugging.
+- Remove outdated reference to `config.mjs`
+
 # v1.0.3
 
 - Drop fork of `esbuild-plugin-lodash` for published release.
