@@ -1,9 +1,9 @@
 import lodashPlugin from 'esbuild-plugin-lodash';
 
-import { cosmiconfig } from 'cosmiconfig';
 import deepmerge from 'deepmerge';
+import { cosmiconfig } from 'cosmiconfig';
 
-import { IS_RELATIVE } from './regex.mjs';
+import { IS_RELATIVE_AND_JS } from './regex.mjs';
 
 /**
  * Gets the base ESBuild config for build/serve.
@@ -16,7 +16,7 @@ export async function getEsbuildConfig() {
   try {
     const result = await explorer.search();
     Object.assign(configFile, result.config);
-  } catch {
+  } catch (e) {
     console.debug('Skipping typehead config, using defaults.');
   }
 
@@ -27,7 +27,7 @@ export async function getEsbuildConfig() {
     plugins: [
       // Automatically rewrite Lodash statements.
       lodashPlugin({
-        filter: IS_RELATIVE,
+        filter: IS_RELATIVE_AND_JS,
       }),
     ],
   });

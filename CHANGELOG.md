@@ -1,6 +1,7 @@
 # v1.1.0
 
-- 🚨 [breaking change] Upgrade from ESBuild 0.12.0 to 0.14.0
+- 🚨 [breaking change] Upgrade from ESBuild 0.12.0 to 0.14.0.
+- 🚨 [breaking change] Only run Lodash plugin on JavaScript files (expected but was bug).
 
 - Add `--print-esbuild-config` flag for debugging.
 - Remove outdated reference to `config.mjs`

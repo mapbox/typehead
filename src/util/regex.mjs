@@ -9,3 +9,10 @@
  */
 export const IS_RELATIVE = /^[./]|^\.[./]|^\.\.[/]/;
 export const IS_EXTERNAL = /^[^./]|^\.[^./]|^\.\.[^/]/;
+
+/**
+ * This is the same as IS_RELATIVE, but makes sure the file has the
+ * extensions js/jsx/ts/tsx/cjs/mjs.
+ */
+export const IS_RELATIVE_AND_JS =
+  /(^[./]|^\.[./]|^\.\.[/]).*\.(mjs|cjs|jsx*|tsx*)$/;
