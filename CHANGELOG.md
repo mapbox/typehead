@@ -1,3 +1,7 @@
+# v1.2.0
+
+- If `globalName` is specified in `typehead.config.js`, then a fourth IIFE ("CDN") build will be created with that name.
+
 # v1.1.0
 
 - 🚨 [breaking change] Upgrade from ESBuild 0.12.0 to 0.14.0.

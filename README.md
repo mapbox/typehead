@@ -48,6 +48,12 @@ This behavior is configurable ([see below](#Customization)).
 - A production CSM build `index.js` that is minified.
 - A production ESM build `index-esm.js` that is not minified.
 
+If `globalName` is specified in [customization](#customization), then a fourth build will be created with that name.
+
+- A production IIFE build `{globalName}.js` that is minified and includes all dependencies statically.
+
+The IIFE build is suitable for distribution on CDNs.
+
 ## Serve
 
 `typehead serve` will start a web server for the `web` directory (if present).

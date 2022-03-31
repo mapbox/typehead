@@ -4,4 +4,5 @@ module.exports = {
   loader: {
     '.css': 'text',
   },
+  globalName: 'example'
 };

@@ -21,23 +21,7 @@ const program = new Command()
 const argv = program.opts();
 
 // Get base ESBuild config.
-const config = deepmerge(await getEsbuildConfig(), {
-  plugins: [
-    /**
-     * Small ESBuild plugin not to bundle node_modules:
-     * https://github.com/evanw/esbuild/issues/619#issuecomment-751995294
-     */
-    {
-      name: 'make-all-packages-external',
-      setup(build) {
-        build.onResolve({ filter: IS_EXTERNAL }, (args) => ({
-          path: args.path,
-          external: true,
-        }));
-      },
-    },
-  ],
-});
+const config = await getEsbuildConfig();
 
 // Make sure we're setting a default entry point and outdir.
 if (!config.entryPoints) {
@@ -74,24 +58,44 @@ if (argv.watch) {
 const now1 = Date.now();
 console.log(chalk.blue('Build starting! 🏗️'));
 
+// 'pkgConfig' includes make-all-packages-external, which for NPM
+// distribution is what we want.
+const pkgConfig = deepmerge(config, {
+  plugins: [
+    /**
+     * Small ESBuild plugin not to bundle node_modules:
+     * https://github.com/evanw/esbuild/issues/619#issuecomment-751995294
+     */
+    {
+      name: 'make-all-packages-external',
+      setup(build) {
+        build.onResolve({ filter: IS_EXTERNAL }, (args) => ({
+          path: args.path,
+          external: true,
+        }));
+      },
+    },
+  ],
+});
+
 try {
   await Promise.all([
     // Development build.
     esbuild.build({
-      ...config,
+      ...pkgConfig,
       entryNames: '[dir]/[name]-development',
       format: 'cjs',
     }),
     // Production build.
     esbuild.build({
-      ...config,
+      ...pkgConfig,
       entryNames: '[dir]/[name]',
       format: 'cjs',
       minify: true,
     }),
     // ESM build.
     esbuild.build({
-      ...config,
+      ...pkgConfig,
       entryNames: '[dir]/[name]-esm',
       format: 'esm',
     }),
@@ -99,6 +103,26 @@ try {
 } catch (e) {
   console.error(chalk.red('Build failed. ⚔️'));
   console.error(e);
+}
+
+// If we have a global name, create a build for CDN.
+if (config.globalName) {
+  try {
+    await Promise.all([
+      // CDN build.
+      esbuild.build({
+        ...config,
+        entryNames: `[dir]/${config.globalName}`,
+        format: 'iife',
+        minify: true,
+        bundle: true,
+        platform: 'browser'
+      }),
+    ]);
+  } catch (e) {
+    console.error(chalk.red('Build failed. ⚔️'));
+    console.error(e);
+  }
 }
 
 const now2 = Date.now();
