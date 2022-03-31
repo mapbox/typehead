@@ -115,6 +115,8 @@ if (config.globalName) {
         entryNames: `[dir]/${config.globalName}`,
         format: 'iife',
         minify: true,
+        bundle: true,
+        platform: 'browser'
       }),
     ]);
   } catch (e) {
