@@ -12,7 +12,7 @@ In your `package.json`:
 {
   "main": "dist/index.js",
   "module": "dist/index-esm.js",
-  "typings": "dist/src/index.d.ts",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "build": "typehead build",
     "watch": "typehead build --watch",
@@ -25,12 +25,28 @@ Typehead will not check types or generate declaration files. While this seems in
 
 We recommend setting this up with `tsc`, which is included with TypeScript.
 
-Here's an example in `package.json` that builds types before publishing to NPM:
+Here's an example that builds types before publishing to NPM:
+
+`tsconfig.types.json`:
+
+```json
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "./dist"
+  },
+  "include": ["src/*", "src/**/*"]
+}
+```
+
+`package.json`:
 
 ```json
 {
   "scripts": {
-    "types": "tsc -p tsconfig.json --declaration --emitDeclarationOnly --outDir ./dist",
+    "types": "tsc -p tsconfig.types.json",
     "prepare": "npm run types && npm run build"
   }
 }

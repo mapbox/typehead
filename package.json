@@ -30,8 +30,7 @@
     "cosmiconfig": "^7.0.1",
     "deepmerge": "^4.2.2",
     "esbuild": "^0.14.19",
-    "esbuild-plugin-lodash": "^1.1.0",
-    "typescript": "^4.6.3"
+    "esbuild-plugin-lodash": "^1.1.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
@@ -50,7 +49,8 @@
     "eslint-config-prettier": "^8.3.0",
     "lint-staged": "^11.1.2",
     "lodash": "^4.17.21",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "typescript": "^4.6.3"
   },
   "engines": {
     "node": ">=14.17.6"
