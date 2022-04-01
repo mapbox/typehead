@@ -1,3 +1,7 @@
+# v1.2.1
+
+- Allow for `"platform": "node"` to be specified and not overridden.
+
 # v1.2.0
 
 - If `globalName` is specified in `typehead.config.js`, then a fourth IIFE ("CDN") build will be created with that name.
