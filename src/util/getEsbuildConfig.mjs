@@ -20,10 +20,9 @@ export async function getEsbuildConfig() {
     console.debug('Skipping typehead config, using defaults.');
   }
 
-  return deepmerge(configFile, {
+  const config = deepmerge(configFile, {
     sourcemap: true,
     bundle: true,
-    platform: 'neutral',
     plugins: [
       // Automatically rewrite Lodash statements.
       lodashPlugin({
@@ -31,4 +30,11 @@ export async function getEsbuildConfig() {
       }),
     ],
   });
+
+  // Only set platform if not set by the configuration.
+  if (!config.platform) {
+    config.platform = 'neutral';
+  }
+
+  return config;
 }

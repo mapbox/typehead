@@ -23,14 +23,30 @@ In your `package.json`:
 
 Typehead will not check types or generate declaration files. While this seems initially counter-intuitive, this operation is costly and usually covered by IDE tools (VSCode) and CI (using `tsc`).
 
-We recommend setting this up with `npm install --save-dev dts-bundle-generator`.
+We recommend setting this up with `tsc`, which is included with TypeScript.
 
-Here's an example in `package.json` that builds types before publishing to NPM:
+Here's an example that builds types before publishing to NPM:
+
+`tsconfig.types.json`:
+
+```json
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "./dist"
+  },
+  "include": ["src/*", "src/**/*"]
+}
+```
+
+`package.json`:
 
 ```json
 {
   "scripts": {
-    "types": "dts-bundle-generator -o dist/index.d.ts src/index.ts",
+    "types": "tsc -p tsconfig.types.json",
     "prepare": "npm run types && npm run build"
   }
 }
@@ -48,11 +64,21 @@ This behavior is configurable ([see below](#Customization)).
 - A production CSM build `index.js` that is minified.
 - A production ESM build `index-esm.js` that is not minified.
 
+### Global name
+
 If `globalName` is specified in [customization](#customization), then a fourth build will be created with that name.
 
 - A production IIFE build `{globalName}.js` that is minified and includes all dependencies statically.
 
-The IIFE build is suitable for distribution on CDNs.
+The IIFE build is suitable for distribution on CDNs and [UNPKG](https://unpkg.com/).
+
+`package.json`:
+
+```
+{
+  "unpkg": "dist/{globalName}.js"
+}
+```
 
 ## Serve
 

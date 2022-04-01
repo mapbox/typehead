@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "ES2020",
+    // This is needed since we use both 'esnext' and 'node' module resolution.
+    // https://www.typescriptlang.org/docs/handbook/module-resolution.html#module-resolution-strategies
+    "moduleResolution": "node",
+    "lib": ["dom", "ES2020", "ESNext"],
+    // Treat JSX as React.
+    "jsx": "react",
+    // Make sure CommonJS modules are read correctly.
+    "esModuleInterop": true,
+    // Significant perf increase by skipping checking .d.ts files.
+    "skipLibCheck": true
+  }
+}
