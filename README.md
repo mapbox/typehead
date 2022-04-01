@@ -12,7 +12,7 @@ In your `package.json`:
 {
   "main": "dist/index.js",
   "module": "dist/index-esm.js",
-  "typings": "dist/index.d.ts",
+  "typings": "dist/src/index.d.ts",
   "scripts": {
     "build": "typehead build",
     "watch": "typehead build --watch",
