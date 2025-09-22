@@ -47,7 +47,7 @@ const server = await esbuild.serve(
     host: argv.host || 'localhost',
     // "it will default to an open port with a preference for port 8000"
     // https://esbuild.github.io/api/#serve-arguments
-    port: argv.port || undefined,
+    port: parseInt(argv.port, 10) || undefined,
   },
   config
 );
